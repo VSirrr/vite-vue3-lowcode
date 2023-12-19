@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "target": "ES6",
+    "module": "ESNext",
+    "jsx": "preserve",
+    "allowSyntheticDefaultImports": true
+  },
+  "allowJs": true,
+  "include": ["src/**/*", "auto-imports.d.ts", "components.d.ts"],
+  "exclude": ["node_modules"]
+}

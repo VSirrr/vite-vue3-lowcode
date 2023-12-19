@@ -1,0 +1,8 @@
+.env
+.env.*
+*.d.ts
+node_modules
+dist
+.husky
+public
+*.lock
