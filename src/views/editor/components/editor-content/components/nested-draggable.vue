@@ -31,7 +31,7 @@
 import draggable from 'vuedraggable'
 import { useVModel } from '@vueuse/core'
 import { useEditorStore } from '@/stores/editor'
-import ContextMenu from '@imengyu/vue3-context-menu'
+import { useContextMenu } from '@/components/context-menu'
 import BasicComponents from '@/components/basic-componets'
 
 defineOptions({
@@ -52,10 +52,11 @@ const isDrag = ref(false)
 
 const { selectComponent, deleteComponent /* copyComponent */ } = useEditorStore()
 
+const [createContextMenu] = useContextMenu()
+
 const onContextmenu = (e, element) => {
-  ContextMenu.showContextMenu({
-    x: e.x,
-    y: e.y,
+  createContextMenu({
+    event: e,
     items: [
       {
         label: '删除',
