@@ -30,7 +30,7 @@ export default defineComponent({
     const getStyle = computed(() => {
       const { axis, items, width } = props
       const { x, y } = axis || { x: 0, y: 0 }
-      const menuHeight = (items || []).length * 56
+      const menuHeight = (items || []).length * 40
       const menuWidth = width
       const body = document.body
       const left = body.clientWidth < x + menuWidth ? x - menuWidth : x
