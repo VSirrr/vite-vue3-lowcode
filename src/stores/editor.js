@@ -141,7 +141,7 @@ export const useEditorStore = defineStore('editor', () => {
   // 所有组件
   const components = ref([])
   // 当前组件
-  const currentComp = ref(null)
+  const currentComp = ref({})
 
   const addComponent = (component) => {
     unSelectAll(components.value)
@@ -176,6 +176,8 @@ export const useEditorStore = defineStore('editor', () => {
     currentComp.value = deleteCompByIdAndReturnComp(components.value, id)
     if (currentComp.value) {
       currentComp.value.select = true
+    } else {
+      currentComp.value = {}
     }
   }
 
@@ -189,7 +191,7 @@ export const useEditorStore = defineStore('editor', () => {
 
   const resetStates = () => {
     components.value = []
-    currentComp.value = null
+    currentComp.value = {}
   }
 
   return {
