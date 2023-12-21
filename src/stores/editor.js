@@ -156,6 +156,19 @@ export const useEditorStore = defineStore('editor', () => {
     components.value.push(currentComp.value)
   }
 
+  const setCurrentComp = (component) => {
+    unSelectAll(components.value)
+    currentComp.value = {
+      id: `${component.type}-${nanoid()}`,
+      select: true,
+      name: component.name,
+      type: component.type,
+      config: { ...configs[component.type] },
+      components: component.type == 'container' ? [] : null
+    }
+    return currentComp.value
+  }
+
   const updateComponents = (newComponents) => {
     components.value = newComponents
   }
@@ -199,6 +212,7 @@ export const useEditorStore = defineStore('editor', () => {
     currentComp,
     resetStates,
     addComponent,
+    setCurrentComp,
     // copyComponent,
     selectComponent,
     deleteComponent,
