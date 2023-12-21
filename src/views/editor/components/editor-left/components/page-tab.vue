@@ -1,4 +1,5 @@
 <template>
+  <!-- draggable :allow-drop="allowDrop" -->
   <el-tree
     node-key="id"
     highlight-current
@@ -29,6 +30,13 @@ const currentNodeKey = computed(() => {
 const onNodeClick = (data) => {
   selectComponent(data.id)
 }
+
+/* function allowDrop(draggingNode, dropNode) {
+  if (dropNode.data.type === 'container') {
+    return true
+  }
+  return false
+} */
 </script>
 
 <style lang="scss" scoped>
