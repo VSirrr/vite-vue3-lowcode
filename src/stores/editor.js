@@ -4,13 +4,20 @@ import configs from '@/components/basic-componets/config'
 
 const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvwxwz', 10)
 
-/* const getNewComp = (component, select = true) => ({
+/**
+ * 根据传入的组件类型返回一个具有 ID 和配置项的组件对象
+ * @param {object} component
+ * @param {boolean} select
+ * @returns {object} 具有 ID 和配置项的组件对象
+ */
+const getNewComp = (component, select = true) => ({
   select,
-  id: ++id,
   name: component.name,
   type: component.type,
-  components: component.type == 'container' ? [] : null
-}) */
+  id: `${component.type}-${nanoid()}`,
+  config: { ...configs[component.type] },
+  components: component.type === 'container' ? [] : null
+})
 
 /**
  * 根据传入的 id 筛选数据
@@ -20,7 +27,7 @@ const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvwxwz', 10)
  */
 function findCompById(components, id) {
   for (const comp of components) {
-    if (comp.id == id) {
+    if (comp.id === id) {
       comp.select = true
       return comp
     }
@@ -75,7 +82,7 @@ const unSelectAll = (components) => {
 const deleteCompById = (components, id) => {
   for (let index = 0, length = components.length; index < length; index++) {
     const comp = components[index]
-    if (comp.id == id) {
+    if (comp.id === id) {
       components.splice(index, 1)
       break
     }
@@ -93,7 +100,7 @@ const deleteCompById = (components, id) => {
 const deleteCompByIdAndReturnComp = (components, id, parent = null) => {
   for (let index = 0, length = components.length; index < length; index++) {
     const comp = components[index]
-    if (comp.id == id) {
+    if (comp.id === id) {
       components.splice(index, 1)
       const length = components.length
       if (length === 0) {
@@ -145,27 +152,13 @@ export const useEditorStore = defineStore('editor', () => {
 
   const addComponent = (component) => {
     unSelectAll(components.value)
-    currentComp.value = {
-      id: `${component.type}-${nanoid()}`,
-      select: true,
-      name: component.name,
-      type: component.type,
-      config: { ...configs[component.type] },
-      components: component.type == 'container' ? [] : null
-    }
+    currentComp.value = getNewComp(component)
     components.value.push(currentComp.value)
   }
 
   const setCurrentComp = (component) => {
     unSelectAll(components.value)
-    currentComp.value = {
-      id: `${component.type}-${nanoid()}`,
-      select: true,
-      name: component.name,
-      type: component.type,
-      config: { ...configs[component.type] },
-      components: component.type == 'container' ? [] : null
-    }
+    currentComp.value = getNewComp(component)
     return currentComp.value
   }
 
@@ -174,7 +167,7 @@ export const useEditorStore = defineStore('editor', () => {
   }
 
   const selectComponent = (id) => {
-    if (id == currentComp.value.id) {
+    if (id === currentComp.value.id) {
       return
     }
     unSelectAll(components.value)
