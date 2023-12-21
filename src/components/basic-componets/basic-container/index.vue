@@ -36,9 +36,15 @@ defineOptions({
 <template>
   <div :style="{ ...styles, ...backgroundImageStyle }">
     <slot v-if="components && components.length" />
-    <div v-else style="height: 100px; font-size: 14px">
-      <div>容器组件：可放置文本、图片与容器组件</div>
-      <slot />
+    <div v-else style="height: 100px">
+      <div style="position: relative">
+        <div style="position: absolute; top: 0; left: 0; font-size: 14px">
+          容器组件：可放置文本、图片与容器组件
+        </div>
+      </div>
+      <div style="position: relative; z-index: 2; height: 100%">
+        <slot />
+      </div>
     </div>
   </div>
 </template>

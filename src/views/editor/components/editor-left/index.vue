@@ -1,14 +1,17 @@
 <script setup>
-import Base from './components/base.vue'
+import PageTab from './components/page-tab.vue'
+import ComponentTab from './components/component-tab.vue'
 </script>
 
 <template>
   <el-aside class="editor-left">
     <el-tabs tab-position="left" model-value="base">
-      <el-tab-pane label="组件" name="base">
-        <Base />
+      <el-tab-pane label="组件列表" name="base">
+        <ComponentTab />
       </el-tab-pane>
-      <!-- <el-tab-pane label="容器组件" name="container">容器组件</el-tab-pane> -->
+      <el-tab-pane label="页面结构" name="container">
+        <PageTab />
+      </el-tab-pane>
     </el-tabs>
   </el-aside>
 </template>
