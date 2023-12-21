@@ -30,7 +30,7 @@ export default defineComponent({
     const getStyle = computed(() => {
       const { axis, items, width } = props
       const { x, y } = axis || { x: 0, y: 0 }
-      const menuHeight = (items || []).length * 40
+      const menuHeight = (items || []).length * 40 + 10
       const menuWidth = width
       const body = document.body
       const left = body.clientWidth < x + menuWidth ? x - menuWidth : x
@@ -105,18 +105,20 @@ export default defineComponent({
   z-index: 200;
   top: 0;
   left: 0;
+  padding: 6px;
   width: 156px;
   user-select: none;
-  border-radius: 8px;
+  border-radius: 4px;
   background-color: #fff;
   border: solid 1px var(--el-menu-border-color);
   cursor: pointer;
+  box-shadow: 0 0 2px #ccc;
 
   &__item {
     padding: 0 20px;
     height: 40px;
     line-height: 40px;
-    border-radius: 8px;
+    border-radius: 4px;
     font-size: 15px;
     color: #444;
     overflow: hidden;
