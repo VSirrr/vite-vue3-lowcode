@@ -1,16 +1,13 @@
 <script setup>
-import { storeToRefs } from 'pinia'
 import { useEditorStore } from '@/stores/editor'
 import NestedDraggable from './components/nested-draggable.vue'
 
 const store = useEditorStore()
-const { components } = storeToRefs(store)
-const { updateComponents } = store
 </script>
 
 <template>
-  <section class="editor-content" @click="onClick">
-    <NestedDraggable v-model="components" @update:modelValue="updateComponents" />
+  <section class="editor-content">
+    <NestedDraggable :list="store.components" />
   </section>
 </template>
 

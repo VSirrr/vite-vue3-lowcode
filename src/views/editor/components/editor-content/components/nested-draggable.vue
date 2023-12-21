@@ -1,7 +1,7 @@
 <template>
   <draggable
     class="main"
-    v-model="list"
+    :list="list"
     item-key="id"
     :animation="200"
     :group="{ name: 'components' }"
@@ -21,7 +21,7 @@
         @mousedown.stop.left="selectComponent(element.id)"
         @contextmenu.stop.prevent="onContextmenu($event, element)"
       >
-        <nested-draggable v-model="element.components" />
+        <nested-draggable :list="element.components" />
       </component>
     </template>
   </draggable>
@@ -29,7 +29,6 @@
 
 <script setup>
 import draggable from 'vuedraggable'
-import { useVModel } from '@vueuse/core'
 import { useEditorStore } from '@/stores/editor'
 import { useContextMenu } from '@/components/context-menu'
 import BasicComponents from '@/components/basic-componets'
@@ -38,16 +37,13 @@ defineOptions({
   name: 'nested-draggable'
 })
 
-const props = defineProps({
-  modelValue: {
+defineProps({
+  list: {
     type: Array,
     default: () => []
   }
 })
 
-const emit = defineEmits(['update:modelValue'])
-
-const list = useVModel(props, 'modelValue', emit)
 const isDrag = ref(false)
 
 const { selectComponent, deleteComponent /* copyComponent */ } = useEditorStore()
