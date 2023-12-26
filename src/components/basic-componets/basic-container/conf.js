@@ -3,7 +3,7 @@
  */
 export default {
   // styles
-  width: 375,
+  // width: 375,
   // height: 200,
   // minHeight: 120,
   display: 'block',
