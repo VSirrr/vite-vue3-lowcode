@@ -150,20 +150,10 @@ export const useEditorStore = defineStore('editor', () => {
   // 当前组件
   const currentComp = ref({})
 
-  const addComponent = (component) => {
-    unSelectAll(components.value)
-    currentComp.value = getNewComp(component)
-    components.value.push(currentComp.value)
-  }
-
   const setCurrentComp = (component) => {
     unSelectAll(components.value)
     currentComp.value = getNewComp(component)
     return currentComp.value
-  }
-
-  const updateComponents = (newComponents) => {
-    components.value = newComponents
   }
 
   const selectComponent = (id) => {
@@ -204,12 +194,10 @@ export const useEditorStore = defineStore('editor', () => {
     components,
     currentComp,
     resetStates,
-    addComponent,
     setCurrentComp,
     // copyComponent,
     selectComponent,
     deleteComponent,
-    updateComponents,
     updateCurrentComp
   }
 })

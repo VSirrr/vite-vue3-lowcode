@@ -7,7 +7,7 @@
     :group="{ name: 'components', pull: 'clone', put: false }"
   >
     <template #item="{ element }">
-      <div class="component-item" :key="element.name" @click="onClick(element)">
+      <div class="component-item" :key="element.name">
         <component :is="element" style="max-width: 100%; height: auto" />
       </div>
     </template>
@@ -19,15 +19,11 @@ import draggable from 'vuedraggable'
 import { useEditorStore } from '@/stores/editor'
 import BasicComponents from '@/components/basic-componets'
 
-const { addComponent, setCurrentComp } = useEditorStore()
+const { setCurrentComp } = useEditorStore()
 
 const list = []
 for (const key in BasicComponents) {
   list.push(BasicComponents[key])
-}
-
-function onClick(comp) {
-  addComponent(comp)
 }
 
 function onClone(comp) {
