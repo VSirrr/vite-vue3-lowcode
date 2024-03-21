@@ -1,6 +1,6 @@
 <template>
   <el-form-item :label="config.label">
-    <el-color-picker :modelValue="value" v-bind="config.attrs" @change="onChange" />
+    <el-color-picker show-alpha :modelValue="value" v-bind="config.attrs" @change="onChange" />
   </el-form-item>
 </template>
 
