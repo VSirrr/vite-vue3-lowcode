@@ -15,9 +15,9 @@
           drag: isDrag,
           select: element.select
         }"
-        :is="BasicComponents[element.name]"
         :config="element.config"
         :components="element.components"
+        :is="getBasicComponent(element.name)"
         @mousedown.stop.left="selectComponent(element.id)"
         @contextmenu.stop.prevent="onContextmenu($event, element)"
       >
@@ -62,6 +62,14 @@ const onContextmenu = (e, element) => {
       }
     ]
   })
+}
+
+/**
+ * 返回组建对象
+ * @param {string} name 组件名称
+ */
+function getBasicComponent(name) {
+  return BasicComponents[name]
 }
 </script>
 
